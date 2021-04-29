@@ -17,10 +17,6 @@ print("downloading ...")
 try:
 	image_name = read_file('index.txt')
 
-	number = int(image_name)
-	number += 1
-	write_file('index.txt', number)
-
 	link = 'https://www.bing.com/'
 	path_image_file = '/home/soroush/Desktop/work/background/download/%s.jpg' % image_name
 
@@ -43,9 +39,13 @@ try:
 	os.system(command)
 	print("set background")
 
+	number = int(image_name)
+	number += 1
+	write_file('index.txt', number)
+
 except:
-	image_name = random.randint(1, int(read_file('index.txt')))
-	print("Internet not connect")
+	image_name = random.randint(1, int(read_file('index.txt')) - 1)
+	print("not connection")
 	command = "/usr/bin/gsettings set org.gnome.desktop.background picture-uri /home/soroush/Desktop/work/background/download/%s.jpg" %image_name
 	os.system(command)
-	print("set local background")
+	print("set local background %s" %image_name)
